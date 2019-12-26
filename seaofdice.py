@@ -3,7 +3,7 @@ from discord.ext import commands
 import random
 import asyncio
 
-TOKEN = 'NjEzMzgyMTAzNzczNjEwMDMz.XVwHnw.N0xp9VfXMGoOSguwAvW7H8t3Y1M'
+TOKEN = 'YOURTOKEN'
 
 prefix = '!'
 
