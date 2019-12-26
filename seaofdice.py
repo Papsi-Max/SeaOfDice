@@ -11,17 +11,7 @@ bot = commands.Bot(command_prefix=prefix)
 client = discord.Client()
 
 diceFaces = ["💀", "💰", "💎", "🔪", "🐵", "🐦"]
-#deck = ["pirate", "pirate", "pirate", "pirate", "ile", "ile", "ile", "ile", "1TDM", "1TDM", "1TDM", "2TDM", "2TDM", "gardienne", "gardienne", "gardienne", "gardienne", "bateau1000", "bateau1000", "bateau500", "bateau500", "bateau300", "bateau300", "or", "or", "or", "or", "diamant", "diamant", "diamant", "diamand", "animaux", "animaux", "animaux", "animaux"]
 deck = ["Pirate", "Pirate", "Pirate", "Pirate", "Ile", "Ile", "Ile", "Ile", "1TDM", "1TDM", "1TDM", "2TDM", "2TDM", "Or", "Or", "Or", "Or", "Diamant", "Diamant", "Diamant", "Diamand", "Animaux", "Animaux", "Animaux", "Animaux"]
-#Pirate : Ok
-#Ile : Ok
-#TDM : Ok
-#Gardienne : /
-#Bateau : /
-#Or : Ok
-#Diamant : Ok
-#Animaux : Ok
-
 
 @bot.event
 async def on_ready():
@@ -29,13 +19,6 @@ async def on_ready():
     print(bot.user.name)
     print(bot.user.id)
     print('------')
-    
-@bot.event
-async def on_member_join(member):
-    print (str(member.name) + "have join the server.")
-    roleMatelos_id = 640547435445354533 #write id w/o @&
-    roleMatelos = discord.utils.get(member.guild.roles, id=roleMatelos_id)
-    await member.add_roles(roleMatelos)
     
 @bot.command()
 async def game(ctx):
@@ -481,105 +464,7 @@ async def scoreIG(ctx, players, playersScore):
     return tmpPlayersScore
 
     
-@bot.command(pass_context=True)
-async def emoji(ctx):
-    msg = await ctx.send("working")
-    reactions = ['💩']
-    for emoji in reactions: 
-        await msg.add_reaction(emoji)
-        
-        
-@bot.command(pass_context=True)
-async def whoshere(ctx):
-    voice_channel = discord.utils.get(ctx.guild.voice_channels, name="Gaming", type=discord.ChannelType.voice)
-    membersName = voice_channel.members
-    
-    memberName = []
-    memberID = []
-
-    for member in membersName:
-        memberName.append(member.display_name)
-        memberID.append(member.id)
-        
-    allMemberName = ', '.join(memberName)
-    nbMembers = len(memberName)
-    
-    if (nbMembers == 0):
-        msg = await ctx.send("Nobody here")
-        return
-    
-    elif (nbMembers == 1):
-        msg = await ctx.send(allMemberName + " is here")
-        
-    else:
-        msg = await ctx.send(allMemberName + " are here")
-    
-    await voice_channel.edit(user_limit=nbMembers)
-    membersLimit = voice_channel.user_limit
 
 
-@bot.command()
-async def info(ctx):
-    embed = discord.Embed(title="nice bot", description="Nicest bot there is ever.", color=0xeee657)
-
-    # give info about you here
-    embed.add_field(name="Author", value="<YOUR-USERNAME>")
-
-    # Shows the number of servers the bot is member of.
-    embed.add_field(name="Server count", value=f"{len(bot.guilds)}")
-
-    # give users a link to invite thsi bot to their server
-    embed.add_field(name="Invite", value="[Invite link](<insert your OAuth invitation link here>)")
-
-    await ctx.send(embed=embed)
-
-bot.remove_command('help')
-
-@bot.command()
-async def help(ctx):
-    embed = discord.Embed(title="nice bot", description="A Very Nice bot. List of commands are:", color=0xeee657)
-
-    embed.add_field(name="$add X Y", value="Gives the addition of **X** and **Y**", inline=False)
-    embed.add_field(name="$multiply X Y", value="Gives the multiplication of **X** and **Y**", inline=False)
-    embed.add_field(name="$greet", value="Gives a nice greet message", inline=False)
-    embed.add_field(name="$cat", value="Gives a cute cat gif to lighten up the mood.", inline=False)
-    embed.add_field(name="$info", value="Gives a little info about the bot", inline=False)
-    embed.add_field(name="$help", value="Gives this message", inline=False)
-
-    await ctx.send(embed=embed)
 
 bot.run(TOKEN)  # Where 'TOKEN' is your bot token
-
-# import discord
-# from discord.ext import commands
-# import random
-
-# TOKEN = 'NjEzMzgyMTAzNzczNjEwMDMz.XVwHnw.N0xp9VfXMGoOSguwAvW7H8t3Y1M'
-
-# client = discord.Client()
-
-# diceFaces = ["Tête-de-mort", "Pièce d'or", "Sabres", "Diamant", "Singe", "Perroquet"]
-
-# class MyClient(discord.Client):
-    # async def on_ready(self):
-        # print('Logged in as')
-        # print(self.user.name)
-        # print(self.user.id)
-        # print('------')
-
-    # async def on_message(self, message):
-        # we do not want the bot to reply to itself
-        # if message.author.id == self.user.id:
-            # return
-
-        # if message.content.startswith('!hello'):
-            # msg = await message.channel.send('Hello {0.author.mention}'.format(message))
-            # reactions = ['💩']
-            # for emoji in reactions:
-                # await msg.add_reaction(emoji)
-                
-        # if message.content.startswith('!dice'):
-            
-
-# client = MyClient()
-# client.run(TOKEN)
